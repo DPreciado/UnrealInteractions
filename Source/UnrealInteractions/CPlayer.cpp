@@ -15,6 +15,7 @@ ACPlayer::ACPlayer()
 void ACPlayer::BeginPlay()
 {
 	Super::BeginPlay();
+	OnActorBeginOverlap.AddDynamic(this, &ACPlayer::OnOverlap);
 	
 }
 
@@ -44,3 +45,10 @@ void ACPlayer::VerticalAxis(float value)
 	direction->X = value;
 }
 
+void ACPlayer::OnOverlap(AActor* self, AActor* other)
+{
+	if (other->ActorHasTag("coin"))
+	{
+		other->Destroy();
+	}
+}

@@ -13,10 +13,13 @@ class UNREALINTERACTIONS_API ACPlayer : public ACharacter
 
 	UPROPERTY(EditAnywhere)
 	float moveSpeed{};
-	FVector* direction{};
+	FVector* direction{new FVector()};
 
 	void HorizontalAxis(float value);
 	void VerticalAxis(float value);
+
+	UFUNCTION()
+	void OnOverlap(AActor* self, AActor* other);
 
 public:
 	// Sets default values for this character's properties
